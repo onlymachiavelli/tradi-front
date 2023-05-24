@@ -4,8 +4,8 @@ import * as Toaster from 'react-hot-toast'
 const Register = () => {
   const {username, password, setUser, setPassword, email, setEmail, admin, setAdmin, phone, setPhone,fullname, setFullname, Create} = useSignUp()
   return (
-    <div className="w-full h-screen">
-      <form className="w-3/4 shadow-md border p-5 mx-auto mt-20" 
+    <div className="w-full h-screen bg-[#e6e6e6] overflow-hidden">
+      <form className="w-3/4 shadow-md border p-5 mx-auto mt-20 bg-white rounded" 
       onSubmit={(e)=>{
         e.preventDefault()
         Create()
