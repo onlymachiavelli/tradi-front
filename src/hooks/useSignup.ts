@@ -33,7 +33,7 @@ const useSignUp = () =>{
                 Toaster.toast.success("Account created successfully")
 
                 //mode to dashboard 
-                window.location.href = "http://localhost:3001/dashboard"
+                window.location.href = "http://localhost:5173/dashboard"
 
 
             }else{
