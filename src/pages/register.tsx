@@ -1,0 +1,144 @@
+import * as React from 'react';
+import useSignUp from '../hooks/useSignup';
+import * as Toaster from 'react-hot-toast'
+const Register = () => {
+  const {username, password, setUser, setPassword, email, setEmail, admin, setAdmin, phone, setPhone,fullname, setFullname, Create} = useSignUp()
+  return (
+    <div className="w-full h-screen">
+      <form className="w-3/4 shadow-md border p-5 mx-auto mt-20" 
+      onSubmit={(e)=>{
+        e.preventDefault()
+        Create()
+      }}
+      >
+      <p className='flex justify-center py-4 font-bold text-3xl text-gray-700 pb-10'>Register Admin</p>
+
+        <div className="flex justify-between">
+          <aside className="w-1/2">
+            <div className="w-full px-3 mb-6">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Full name
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="grid-first-name"
+                type="text"
+                placeholder="John Wick"
+                value={fullname} 
+                onChange={(e)=>{
+                  setFullname(e.target.value)
+                }}
+              />
+              <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+            </div>
+            <div className="w-full px-3">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Username
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-last-name"
+                type="text"
+                placeholder="johnwick"
+                value={username}
+                onChange={(e)=>{
+                  setUser(e.target.value)
+                }}
+              />
+            </div>
+            <div className="w-full px-3 pt-5">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Email
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-last-name"
+                type="text"
+                placeholder="johnwick@gmail.com"
+                value={email}
+                onChange={(e)=>{
+                  setEmail(e.target.value)
+                }}
+              />
+            </div>
+          </aside>
+
+          <aside className="w-1/2">
+            <div className="w-full px-3 mb-6">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Password
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-password"
+                type="password"
+                placeholder="******************"
+                value={password}
+                onChange={(e)=>{
+                  setPassword(e.target.value)
+                }
+                }
+              />
+              <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+            </div>
+            <div className="w-full">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Phone
+              </label>
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-city"
+                type="text"
+                placeholder="+1911"
+                value={phone}
+                onChange={(e)=>{
+                  setPhone(e.target.value)
+                }}
+              />
+            </div>
+            <div className="w-full pt-5">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Admin Role
+              </label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-state"
+                  value={admin}
+                  onChange={(e)=>{
+                    setAdmin(e.target.value)
+                  }}
+                >
+                  <option 
+                  value={"adm"}>Admin (Access To Everything)</option>
+                  <option value={"inv"}>Inventory Manager</option>
+                  <option value={"ord"}>Orders Manager</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <div className="flex justify-center">
+          <button className="shadow bg-blue-700 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-5">
+            Sign Up
+          </button>
+        </div>
+      </form>
+      <Toaster.Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
+    </div>
+  );
+};
+
+export default Register;
