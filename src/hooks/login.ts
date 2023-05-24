@@ -19,7 +19,7 @@ const useLogin =  () =>{
                 console.log(res)
                 if (res.status == 200) {
                     //set token 
-                    localStorage.setItem("token", res.data.token)
+                    localStorage.setItem("token", String(res.data))
                     Toaster.toast.success("Login successfully")
                     //mode to dashboard 
                     window.location.href = "http://localhost:5173/dashboard"

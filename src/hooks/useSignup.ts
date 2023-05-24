@@ -31,7 +31,9 @@ const useSignUp = () =>{
             console.log(res)
             if (res.status == 201) {
                 Toaster.toast.success("Account created successfully")
+                
 
+                localStorage.setItem("token", String(res.data))
                 //mode to dashboard 
                 window.location.href = "http://localhost:5173/dashboard"
 
