@@ -20,7 +20,10 @@ const useInv =() =>{
             description: description,
             logo: image
         }
-
+        if (!reqBody.logo) {
+            console.log("error ")
+            return 
+        } 
         //get the token 
         const token = localStorage.getItem("token")
         if(token){
@@ -43,9 +46,26 @@ const useInv =() =>{
     }
 
 
+    const [cats, setMeow] = React.useState([])
+    const getCategory = async () =>{
+        await axios.get("http://localhost:3001/category").then(res=>{
+            if (res.status == 200) {
+                setMeow(res.data)
+                console.log(cats)
+            }
+        }).catch(e=>{
+            console.log(e)
+        })
+    }
+
+
     return {
         title, setTitle, description, setDescription,
-        saveCat
+        saveCat,
+
+
+        getCategory,
+        cats, setMeow
     }
 }
 

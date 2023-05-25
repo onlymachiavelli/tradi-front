@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import useUpload from '../hooks/uploadIMG';
 import { ref, uploadBytes } from 'firebase/storage';
 import useInv from '../hooks/useInv';
+import Card from './catCard';
 const Catego = ({ ...props }) => {
   const { image, setImage, upload, url, setUrl } = useUpload(false);
-  const {saveCat, title, description, setTitle, setDescription} = useInv()
+  const {saveCat, title, description, setTitle, setDescription, cats, setMeow, getCategory} = useInv()
   const handleFileChange = (event :any) => {
     if (event.target.files) {
       setImage(event.target.files[0]);
@@ -14,6 +15,14 @@ const Catego = ({ ...props }) => {
 
     console.log(image)
   };
+
+
+  React.useEffect(()=>{
+
+        getCategory()
+
+  },[])
+
 
   return (
     <div>
@@ -70,9 +79,25 @@ const Catego = ({ ...props }) => {
             upload(()=>saveCat(url))
             setUrl('')
         }}>
-                    Sign In
+                    Add
           </button>
       </form>
+
+
+      <div className='w-full h-auto flex items-center justify-center flex-wrap gap-5 pt-10'> 
+      
+          {
+              cats.map((cat :any, index:any)=>{
+                  return (
+                      <Card cat={cat} key={index} />
+                  )
+              })
+          }
+        </div>
+
+
+
+        
     </div>
   );
 };
