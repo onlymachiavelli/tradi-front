@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { Link} from 'react-router-dom'
-import Catego from '../components/Categories'
-
+import Catego from './Categories'
+import * as Toaster from 'react-hot-toast'
 const Inventory =  ({...props}) =>{
     const [block , setBlock] :any = React.useState(<Catego/>)
 
@@ -32,6 +32,17 @@ const Inventory =  ({...props}) =>{
 
                 {block}
             </div>
+
+            
+
+
+
+            <Toaster.Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
+
+
         </div>
     )
 

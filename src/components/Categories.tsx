@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import useUpload from '../hooks/uploadIMG';
 import { ref, uploadBytes } from 'firebase/storage';
-
+import useInv from '../hooks/useInv';
 const Catego = ({ ...props }) => {
-  const { image, setImage, upload } = useUpload(false);
-
+  const { image, setImage, upload, url, setUrl } = useUpload(false);
+  const {saveCat, title, description, setTitle, setDescription} = useInv()
   const handleFileChange = (event :any) => {
     if (event.target.files) {
       setImage(event.target.files[0]);
@@ -28,6 +28,10 @@ const Catego = ({ ...props }) => {
               id="grid-first-name"
               type="text"
               placeholder="Car"
+
+              value={title}
+
+              onChange={(e)=>setTitle(e.target.value)}
             />
             <p className="text-red-500 text-xs italic">Please fill out this field.</p>
           </div>
@@ -40,6 +44,10 @@ const Catego = ({ ...props }) => {
               id="grid-last-name"
               type="text"
               placeholder="A Vehicle"
+
+              value={description}
+              onChange={(e)=>setDescription(e.target.value)}
+
             />
           </div>
         </div>
@@ -59,8 +67,8 @@ const Catego = ({ ...props }) => {
         </div>
 
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
-            console.log(image)
-            upload()
+            upload(()=>saveCat(url))
+            setUrl('')
         }}>
                     Sign In
           </button>

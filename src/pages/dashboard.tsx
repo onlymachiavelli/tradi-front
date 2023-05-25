@@ -3,7 +3,7 @@ import * as React from 'react'
 import {Link} from 'react-router-dom'
 import useDash from '../hooks/manageDash'
 import MeCard from '../components/meCard'
-import Inventory from '../hooks/Inventory'
+import Inventory from '../components/Inventory'
 import Orders from '../components/orders'
 console.log(import.meta.env.VITE_API_KEY);
 console.log(import.meta.env.VITE_AUTH_DOMAIN);
