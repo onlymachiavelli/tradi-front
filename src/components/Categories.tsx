@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import useUpload from '../hooks/uploadIMG';
-import { ref } from 'firebase/storage';
+import { ref, uploadBytes } from 'firebase/storage';
 
 const Catego = ({ ...props }) => {
-  const { image, setImage } = useUpload(false);
+  const { image, setImage, upload } = useUpload(false);
 
   const handleFileChange = (event :any) => {
     if (event.target.files) {
@@ -58,9 +58,12 @@ const Catego = ({ ...props }) => {
           </label>
         </div>
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
+            console.log(image)
+            upload()
+        }}>
                     Sign In
-                </button>
+          </button>
       </form>
     </div>
   );
