@@ -2,11 +2,27 @@ import * as React from 'react'
 import Card from './prodCard'
 
 import useInv from '../hooks/useInv'
-
+import useUpload from '../hooks/uploadIMG'
 // Get products
 const Products = () => {
-  const { getProds, prods, cats, getCategory , setMeow} = useInv()
+    const {image, setImage, upload, url, setUrl} = useUpload(true)
+  const { getProds, prods, cats, getCategory , setMeow,
+    prodTitle, setProdTitle, prodDescription, setProdDescription,
+        
+        prodPrice, setProdPrice, 
+        prodCat, setProdCat,
+        saveProd
+} = useInv()
     const [vis, setVis] = React.useState("hidden")
+
+
+    const handleFileChange = (event :any) => {
+        if (event.target.files) {
+          setImage(event.target.files[0]);
+        }
+    
+        console.log("tst",image)
+      };
   React.useEffect(() => {
       getProds()
       getCategory()
@@ -52,6 +68,12 @@ const Products = () => {
               id="grid-first-name"
               type="text"
               placeholder="Car"
+                value={prodTitle}
+                onChange={(e:any)=>{
+                    setProdTitle(e.target.value)
+                }}
+
+              
 
 
             />
@@ -65,7 +87,10 @@ const Products = () => {
               id="grid-last-name"
               type="text"
               placeholder="A Vehicle"
-
+                value={prodDescription}
+                onChange={(e:any)=>{
+                    setProdDescription(e.target.value)
+                }}
 
 
             />
@@ -79,6 +104,11 @@ const Products = () => {
               id="grid-first-name"
               type="number"
               placeholder="69.420DT"
+
+                value={prodPrice}
+                onChange={(e:any)=>{
+                    setProdPrice(e.target.value)
+                }}
             />
           </div>
 
@@ -92,10 +122,12 @@ const Products = () => {
                 <select
                   className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
-                  value={""}
-                  onChange={(e)=>{
-                  }}
+
+                    onChange={(e:any)=>{
+                        setProdCat(e.target.value)
+                    }}
                 >
+                    <option value="null">Select a Category</option>
                   {
                     cats.map((cat:any, index:any)=>{
                         return (
@@ -139,7 +171,7 @@ const Products = () => {
             <input
               type="file"
               className="hidden"
-              onChange={()=>{}}
+              onChange={handleFileChange}
             />
           </label>
         </div>
@@ -156,6 +188,9 @@ const Products = () => {
 
 
         <button className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
+            console.log("the url is : ", url)
+            upload(()=>saveProd(url))
+            setUrl('')
             
         }}>
                     Add Category

@@ -76,6 +76,49 @@ const useInv =() =>{
         })
     }
 
+
+
+
+    //preparing the img, title, description, price
+    const [prodTitle, setProdTitle] = React.useState()
+    const [prodDescription, setProdDescription] = React.useState()
+    const [prodPrice, setProdPrice] = React.useState()
+    const [prodCat, setProdCat] = React.useState()
+
+
+    const saveProd = async (img:any) =>{
+
+        
+        const reqBody = {
+            title: prodTitle,
+            description: prodDescription,
+
+            price: Number(prodPrice),
+            image: img,
+        }
+
+        const token = localStorage.getItem("token")
+        if (token) {
+            await axios.post("http://localhost:3001/product", reqBody, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + token
+                    }
+                    })
+                    .then(res=>{
+                        if (res.status == 201) {
+                            Toaster.toast.success("Product is added")
+                        }
+                    }
+                    ).catch(e=>{
+                        Toaster.toast.error("Error adding product")
+                    }
+                    )
+                    }
+
+    }
+
+
     return {
         title, setTitle, description, setDescription,
         saveCat,
@@ -86,6 +129,13 @@ const useInv =() =>{
 
         getProds,
         prods, 
+
+
+        prodTitle, setProdTitle, prodDescription, setProdDescription,
+        
+        prodPrice, setProdPrice, 
+        prodCat, setProdCat,
+        saveProd
 
     }
 

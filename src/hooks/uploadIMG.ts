@@ -17,6 +17,7 @@ const useUpload = (prod : boolean) =>{
         await uploadBytes(storageRef, image).then(()=>{
             getDownloadURL(storageRef).then(async(url)=>{
                 setUrl(url)
+                console.log(url)
                 await nxt()
             })
             
