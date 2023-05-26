@@ -1,3 +1,13 @@
+
+
+const addToCart = (id:any) =>{
+    const datas = localStorage.getItem("cart")
+    localStorage.setItem("cart" , datas ? datas + "," + String(id) : String(id))
+
+}
+
+
+
 const Card = ({...props}) =>{
     console.log(props.Prod.image)
     return (
@@ -44,7 +54,12 @@ const Card = ({...props}) =>{
                     </button>
                     </div>
                     <div className="w-1/2 p-2">
-                    <button className="block w-full bg-white hover:bg-gray-100 text-red-500 border-2 border-red-500 px-3 py-2 rounded uppercase font-poppins font-medium">
+                    <button className="block w-full bg-white hover:bg-gray-100 text-red-500 border-2 border-red-500 px-3 py-2 rounded uppercase font-poppins font-medium"
+                    
+                    onClick={()=>{
+                        addToCart(props.Prod.id)
+                    }}
+                    >
                     <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>
                     </div>

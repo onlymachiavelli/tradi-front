@@ -5,6 +5,7 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import Card from '../components/prods.cards';
 import useProds from '../hooks/useProds';
+import axios from 'axios'
   
   const divStyle = {
     display: 'flex',
@@ -28,6 +29,12 @@ import useProds from '../hooks/useProds';
       caption: 'Slide 3'
     },
   ]
+
+
+
+if (!localStorage.getItem("cart")) {
+    localStorage.setItem("cart", "")
+}
   
 const Home = () =>{
     const {prods, getAll} = useProds()
@@ -36,6 +43,7 @@ const Home = () =>{
     }, [])
     return (
         <main className='w-full h-auto'>
+            
             <header className='w-full h-auto flex bg-[#111] p-5 justify-between'>
                 <Link  to={""} className='text-white font-bold mt-2' >Tradio Store</Link>
 
@@ -47,15 +55,7 @@ const Home = () =>{
                     <Link to={""} className='text-white '>Best Offers</Link>
                     <Link to={""} className='text-white '>About</Link>
                 </nav>
-
-
-
-                <div ></div>
-                <div ></div>
-                <div ></div>
-                <div ></div>
-                <div ></div>
-                <div ></div>
+                {[...Array(12)].map((e, i) => <div key={i}></div>)}
 
                 <div className='flex gap-5'>
                 
@@ -265,12 +265,117 @@ const Home = () =>{
         </div>
     </footer>
 
+
+
+
 </div>
 
 
+    
 
 
+        <div className='fixed w-full z-0 h-screen top-0 bg-[#000000b6] flex items-center justify-center'>
                     
+        <div
+  className="relative w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8"
+  aria-modal="true"
+  role="dialog"
+>
+  <button className="absolute end-4 top-4 text-gray-600 transition hover:scale-110">
+    <span className="sr-only">Close cart</span>
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      className="h-5 w-5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
+  </button>
+
+  <div className="mt-4 space-y-6">
+    <ul className="space-y-4">
+      
+      
+      {
+            localStorage.getItem("cart")?.split(",").map((prod:any, index:number)=>{
+                
+                const [p, setP]:any = React.useState({})
+                React.useEffect(()=>{
+                    axios.get(`localhost:3001/product/id/${prod}?`).then(res=>{
+                        setP(res.data)
+                    }).catch(
+                        e=>{
+                            console.log(e)
+                        }
+                    )
+
+                }, [])
+                return (
+                    <li className="flex items-center gap-4">
+        <img
+          src={p.image}
+          alt=""
+          className="h-16 w-16 rounded object-cover"
+        />
+
+        <div>
+          <h3 className="text-sm text-gray-900">{p.title}</h3>
+
+          <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+            <div>
+              <dt className="inline">Size:</dt>
+              <dd className="inline">XXS</dd>
+            </div>
+
+            <div>
+              <dt className="inline">Color:</dt>
+              <dd className="inline">White</dd>
+            </div>
+          </dl>
+        </div>
+      </li>)
+
+        
+            })
+
+
+        }
+
+    </ul>
+
+    <div className="space-y-4 text-center">
+      <a
+        href="#"
+        className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
+      >
+        View my cart (2)
+      </a>
+
+      <a
+        href="#"
+        className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+      >
+        Checkout
+      </a>
+
+      <a
+        href="#"
+        className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+      >
+        Continue shopping
+      </a>
+    </div>
+  </div>
+</div>
+                </div>       
         </main>
     )
 }
