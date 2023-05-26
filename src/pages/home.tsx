@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
+import Card from '../components/prods.cards';
 
   
   const divStyle = {
@@ -120,27 +121,50 @@ const Home = () =>{
 
 
 
-
             <div className='grid w-4/5 h-auto grid-cols-3 gap-4 m-auto pb-10 pt-20'>
 
-            <div className='bg-[#06a3da] text-center p-10 shadow-2xl rounded'>
+            <div className='bg-red-500 text-center p-10 shadow-2xl rounded'>
                 <i className="fa fa-thumbs-up text-white text-6xl" aria-hidden="true"></i>
                 <p className='text-white font-bold text-xl p-5'>Happy Clients</p>
                 <p className='text-white font-bold'>250</p>
             </div>
 
-            <div className='bg-[#eef9ff] text-center p-10 shadow-2xl rounded border border-gray-500'>
-                <i className="fa fa-check-circle text-[#06a3da] text-6xl" aria-hidden="true"></i>
+            <div className='bg-red-100 text-center p-10 shadow-2xl rounded border border-gray-500'>
+                <i className="fa fa-check-circle text-red-500 text-6xl" aria-hidden="true"></i>
 
-                <p className='text-[#06a3da] font-bold text-xl p-5'>Delivered Products</p>
-                <p className='text-[#06a3da] font-bold'>150369</p>
+                <p className='text-red-500 font-bold text-xl p-5'>Delivered Products</p>
+                <p className='text-red-500 font-bold'>150369</p>
             </div>
-            <div className='bg-[#06a3da] text-center p-10 shadow-2xl rounded'>
+            <div className='bg-red-500 text-center p-10 shadow-2xl rounded'>
                 <i className="fa fa-trophy text-white text-6xl" aria-hidden="true"></i>
                 <p className='text-white font-bold text-xl p-5'>Star Rates</p>
                 <p className='text-white font-bold'>4.5/5 Stars</p>
             </div>
             </div>
+
+
+            <p className='m-auto block w-10/12 pb-10 font-bold text-2xl text-gray-700'>Our Products </p>
+
+
+
+            <div className="flex justify-center items-center min-h-screen  w-10/12 m-auto flex-wrap">
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+            <Card/>
+
+            </div>
+
+            <iframe  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12785.711775826701!2d10.2699248!3d36.7603!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd49fa15643927%3A0xad64c8c462b52435!2sHigher%20Institute%20of%20Technological%20Studies%20of%20Rades!5e0!3m2!1sen!2stn!4v1685130423046!5m2!1sen!2stn" className='w-full h-auto pt-20' style={{ border: 0, height:"500px" }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+
         </main>
     )
 }

@@ -140,7 +140,7 @@ const Products = () => {
                 //setVis("hidden")
               }}
             >
-              Add Category
+              Add Products
             </button>
             <button
               className="mt-5 ml-5 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"

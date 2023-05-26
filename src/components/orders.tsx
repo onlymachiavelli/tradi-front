@@ -18,12 +18,6 @@ const Orders = ({...props})=>{
     }
     return (
         <div className="w-full h-auto">
-
-
-            
-
-
-
             <nav className="w-full h-auto bg-blue-700 p-4 border-l">
                 <p className="text-white text-xl">Manage Orders</p>
 
@@ -68,8 +62,9 @@ const Orders = ({...props})=>{
                         </tr> 
 
                         <tr >
-                           <th colSpan={9}>
-                           {
+                           <th colSpan={9} className=''>
+                          <div className='flex flex-wrap items-center justify-center gap-2'>
+                          {
                                 orders[index].products.map((prod: any, key:any)=>{
                                         return (
                                             <Modal
@@ -79,6 +74,7 @@ const Orders = ({...props})=>{
                                         )
                                 })
                             }
+                          </div>
                            </th>
                         </tr>
                             </>
