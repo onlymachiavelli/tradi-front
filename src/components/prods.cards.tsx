@@ -1,12 +1,26 @@
 
 
-const addToCart = (id:any) =>{
-    const datas = localStorage.getItem("cart")
-    localStorage.setItem("cart" , datas ? datas + "," + String(id) : String(id))
+const addToCart = (idatas: any) => {
+    
+    let storage :any = localStorage.getItem("cart")
+    if (!storage){
+        localStorage.setItem("cart", "[]")
+        storage = localStorage.getItem("cart")
+    }
+    
+    console.log(storage)
+
+    let arr : any = JSON.parse(storage)
+    console.log(typeof arr)
+
+    
+    arr.push(idatas)
+    localStorage.setItem("cart", JSON.stringify(arr))
+
+
 
 }
-
-
+  
 
 const Card = ({...props}) =>{
     console.log(props.Prod.image)
@@ -57,7 +71,7 @@ const Card = ({...props}) =>{
                     <button className="block w-full bg-white hover:bg-gray-100 text-red-500 border-2 border-red-500 px-3 py-2 rounded uppercase font-poppins font-medium"
                     
                     onClick={()=>{
-                        addToCart(props.Prod.id)
+                        addToCart(props.Prod)
                     }}
                     >
                     <i className="fa fa-shopping-cart" aria-hidden="true"></i>

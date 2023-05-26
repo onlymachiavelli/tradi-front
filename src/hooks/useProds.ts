@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const useProds = ()=>{
 
-    const [prods, setProds] = React.useState([])
+    const [prods, setProds] :any= React.useState([])
     const getAll = async ()=>{
         await axios.get('http://localhost:3001/product' ).then(res=>{
 

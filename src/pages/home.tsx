@@ -33,11 +33,19 @@ import axios from 'axios'
 
 
 if (!localStorage.getItem("cart")) {
-    localStorage.setItem("cart", "")
+    localStorage.setItem("cart", "[]")
 }
   
 const Home = () =>{
     const {prods, getAll} = useProds()
+    const [vis, setVis] = React.useState("hidden")
+
+    const getCart = ()=>{
+        const cart = localStorage.getItem("cart")
+        const cartArray = JSON.parse(cart || "[]")
+        console.log(cartArray)
+        return cartArray
+    }
     React.useEffect(()=>{
         getAll()
     }, [])
@@ -83,7 +91,11 @@ const Home = () =>{
 
 
 
-                    <button className='text-white '>
+                    <button className='text-white '
+                    onClick={()=>{
+                        setVis("flex") 
+                    }}
+                    >
                         <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -274,14 +286,18 @@ const Home = () =>{
     
 
 
-        <div className='fixed w-full z-0 h-screen top-0 bg-[#000000b6] flex items-center justify-center'>
+        <div className={`fixed w-full z-0 h-screen top-0 bg-[#000000b6] ${vis} items-center justify-center`}>
                     
         <div
   className="relative w-screen max-w-sm border border-gray-600 bg-gray-100 px-4 py-8 sm:px-6 lg:px-8"
   aria-modal="true"
   role="dialog"
 >
-  <button className="absolute end-4 top-4 text-gray-600 transition hover:scale-110">
+  <button className="absolute end-4 top-4 text-gray-600 transition hover:scale-110"
+    onClick={()=>{
+        setVis("hidden")
+    }}
+  >
     <span className="sr-only">Close cart</span>
 
     <svg
@@ -301,25 +317,59 @@ const Home = () =>{
   </button>
 
   <div className="mt-4 space-y-6">
-    <ul className="space-y-4">
-      
-      
-      {
-            localStorage.getItem("cart")?.split(",").map((prod:any, index:number)=>{
-                
-                const [p, setP]:any = React.useState({})
-                React.useEffect(()=>{
-                    axios.get(`localhost:3001/product/id/${prod}?`).then(res=>{
-                        setP(res.data)
-                    }).catch(
-                        e=>{
-                            console.log(e)
-                        }
-                    )
+  <ul className="space-y-4">
 
-                }, [])
-                return (
-                    <li className="flex items-center gap-4">
+
+
+{
+
+    getCart().map((prod: any, index: number) => {
+        
+        return (
+            <li className="flex items-center gap-4" key={index}>
+              <img
+                src={prod.image}
+                alt=""
+                className="h-16 w-16 rounded object-cover"
+              />
+      
+              <div>
+                <h3 className="text-sm text-gray-900">{prod.title}</h3>
+      
+                <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                  <div>
+                    <dt className="inline">{prod.price} DT</dt>
+                  </div>
+                </dl>
+              </div>
+            </li>
+          )
+
+
+     })
+
+}
+{
+
+
+    /*
+    
+ localStorage.getItem("cart")?.split(",").map((prod: any, index: number) => {
+    
+    //get the local storage 
+    const st :any= localStorage.getItem("cart")
+    let cart :any = JSON.parse(st)
+    console.log(cart)
+
+    //mapping 
+    
+
+
+
+    cart.map(p :any =>{})
+
+    return (
+      <li className="flex items-center gap-4" key={index}>
         <img
           src={p.image}
           alt=""
@@ -331,44 +381,46 @@ const Home = () =>{
 
           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
             <div>
-              <dt className="inline">Size:</dt>
-              <dd className="inline">XXS</dd>
-            </div>
-
-            <div>
-              <dt className="inline">Color:</dt>
-              <dd className="inline">White</dd>
+              <dt className="inline">{p.price} DT</dt>
             </div>
           </dl>
         </div>
-      </li>)
+      </li>
+    );
+  })
+}    
+    
+    */
+}
 
-        
-            })
+</ul>
 
-
-        }
-
-    </ul>
 
     <div className="space-y-4 text-center">
       <a
         href="#"
         className="block rounded border border-gray-600 px-5 py-3 text-sm text-gray-600 transition hover:ring-1 hover:ring-gray-400"
+        onClick={()=>{
+            localStorage.setItem("cart", "[]")
+            setVis("hidden")
+        }}
       >
-        View my cart (2)
+        Clear my Cart
       </a>
 
       <a
         href="#"
         className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
       >
-        Checkout
+        Order Now
       </a>
 
       <a
         href="#"
         className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+        onClick={()=>{
+            setVis("hidden")
+        }}
       >
         Continue shopping
       </a>
