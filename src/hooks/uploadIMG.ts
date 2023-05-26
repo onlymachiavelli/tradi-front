@@ -18,7 +18,9 @@ const useUpload = (prod : boolean) =>{
             getDownloadURL(storageRef).then(async(url)=>{
                 setUrl(url)
                 console.log(url)
-                await nxt()
+                localStorage.setItem("img", String(url))
+                
+                await nxt(url)
             })
             
         }).catch(e=>{

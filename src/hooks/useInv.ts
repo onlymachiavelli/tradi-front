@@ -7,7 +7,7 @@ import useUpload from './uploadIMG'
 
 
 const useInv =() =>{
-
+    const [shit, setShit] = React.useState("")
 
     const [title, setTitle] = React.useState("")
     const [description, setDescription] = React.useState("")
@@ -66,8 +66,6 @@ const useInv =() =>{
     const [prodCat, setProdCat]:any = React.useState()
     const {url} = useUpload(true)
     const saveProd = async (img:any) =>{
-
-            console.log("tst", String(img))
             let image : any = img ? img : url
             console.log("The image is : " , image) 
         const reqBody = {
@@ -75,7 +73,7 @@ const useInv =() =>{
             description: prodDescription,
 
             price: Number(prodPrice),
-            image: image,
+            image: localStorage.getItem("img"),
         }
         const token = localStorage.getItem("token")
         if (token) {
@@ -94,9 +92,10 @@ const useInv =() =>{
                         Toaster.toast.error("Error adding product")
                     }
                     )
-                    }
-
+                    } 
     }
+
+    
     return {
         title, setTitle, description, setDescription,
         saveCat,
