@@ -5,15 +5,13 @@ import useInv from '../hooks/useInv'
 
 // Get products
 const Products = () => {
-  const { getProds, prods, cats, getCategory } = useInv()
-
+  const { getProds, prods, cats, getCategory , setMeow} = useInv()
+    const [vis, setVis] = React.useState("hidden")
   React.useEffect(() => {
-    const fetchData = async () => {
-      await getProds()
-      getCategory
-    }
+      getProds()
+      getCategory()
+    
 
-    fetchData()
   }, [])
 
   console.log(cats)
@@ -28,7 +26,11 @@ const Products = () => {
       </div>
 
 
-      <button className='fixed bottom-5 right-5 bg-blue-700 text-white font-bold w-10 h-10 rounded-full shadow'>+</button>
+      <button className='fixed bottom-5 right-5 bg-blue-700 text-white font-bold w-10 h-10 rounded-full shadow'
+        onClick={()=>{
+            setVis("fixed")
+        }}
+      >+</button>
 
 
 
@@ -38,7 +40,7 @@ const Products = () => {
 
         //Our PopUp
 
-        <main className='w-full h-screen fixed top-0 bg-[#000000a1] flex items-center  align-center justify-center'>
+        <main className={`w-full h-screen ${vis} top-0 bg-[#000000a1] flex items-center  align-center justify-center`}>
             <form className="w-1/2  pt-10 bg-white p-10 mr-80">
       <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -53,7 +55,6 @@ const Products = () => {
 
 
             />
-            <p className="text-red-500 text-xs italic">Please fill out this field.</p>
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
@@ -69,32 +70,23 @@ const Products = () => {
 
             />
           </div>
-        </div>
-
-        <div className="flex items-center justify-center bg-grey-lighter">
-          <label className="w-64 flex flex-col items-center px-4 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
-            <svg className="w-8 h-8" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-            </svg>
-            <span className="mt-2 text-base text-white leading-normal">Select Image</span>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
+              Price
+            </label>
             <input
-              type="file"
-              className="hidden"
-              onChange={()=>{}}
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="number"
+              placeholder="69.420DT"
             />
-          </label>
-        </div>
+          </div>
 
 
-
-
-
-
-
-
-        <div className="w-full pt-5">
+          
+        <div className="w-full">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Admin Role
+                Category Of The Product
               </label>
               <div className="relative">
                 <select
@@ -126,10 +118,55 @@ const Products = () => {
 
 
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
+
+
+        </div>
+
+
+
+       
+
+
+
+
+
+        <div className="flex items-center justify-center bg-grey-lighter pt-5">
+          <label className="w-64 flex flex-col items-center px-4 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+            <svg className="w-8 h-8" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+            </svg>
+            <span className="mt-2 text-base text-white leading-normal">Select Image</span>
+            <input
+              type="file"
+              className="hidden"
+              onChange={()=>{}}
+            />
+          </label>
+        </div>
+
+
+
+
+
+
+
+
+        
+
+
+
+        <button className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
             
         }}>
                     Add Category
+          </button>
+
+
+
+          <button className="mt-5 ml-5 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
+                setVis("hidden")
+        }}>
+                    Cancel
           </button>
       </form>
 
