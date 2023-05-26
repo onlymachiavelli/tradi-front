@@ -6,9 +6,6 @@ import * as Toaster from 'react-hot-toast'
 import Products from './Products'
 const Inventory =  ({...props}) =>{
     const [block , setBlock] :any = React.useState(<Catego/>)
-
-
-
     if (props.Role !=="inv" && props.Role !== "adm") {
         return (
             <div className='w-full h-screen flex items-center justify-center'>
@@ -44,17 +41,10 @@ const Inventory =  ({...props}) =>{
 
                 {block}
             </div>
-
-            
-
-
-
             <Toaster.Toaster
                 position="top-right"
                 reverseOrder={false}
             />
-
-
         </div>
     )
 

@@ -5,15 +5,6 @@ import useDash from '../hooks/manageDash'
 import MeCard from '../components/meCard'
 import Inventory from '../components/Inventory'
 import Orders from '../components/orders'
-console.log(import.meta.env.VITE_API_KEY);
-console.log(import.meta.env.VITE_AUTH_DOMAIN);
-console.log(import.meta.env.VITE_PROJECT_ID);
-console.log(import.meta.env.VITE_STORAGE_BUCKET);
-console.log(import.meta.env.VITE_MESSAGING_SENDER_ID);
-console.log(import.meta.env.VITE_APP_ID);
-console.log(import.meta.env.VITE_MEASUREMENT_ID);
-
-
 const Dashboard = () =>{
     const {getMe, me} = useDash()
     React.useEffect(()=>{

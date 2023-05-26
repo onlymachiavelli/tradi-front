@@ -99,7 +99,7 @@ const Catego = ({ ...props }) => {
 
         
     </div>
-  );
-};
+  )
+}
 
-export default Catego;
+export default Catego

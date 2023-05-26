@@ -9,10 +9,8 @@ import useUpload from './uploadIMG'
 const useInv =() =>{
 
 
-    //to save a category
     const [title, setTitle] = React.useState("")
     const [description, setDescription] = React.useState("")
-
     const saveCat = async (image:any)=>{
         const reqBody = {
             title: title , 
@@ -20,10 +18,8 @@ const useInv =() =>{
             logo: image
         }
         if (!reqBody.logo) {
-            console.log("error ")
             return 
         } 
-        //get the token 
         const token = localStorage.getItem("token")
         if(token){
             //post the category
@@ -43,8 +39,6 @@ const useInv =() =>{
             })  
         }
     }
-
-
     const [cats, setMeow] :any= React.useState([])
     const getCategory = async () =>{
         await axios.get("http://localhost:3001/category").then(res=>{
@@ -56,42 +50,21 @@ const useInv =() =>{
             console.log(e)
         })
     }
-
-
-
-
-
-
-
     const [prods, setProds] :any = React.useState([])
     const getProds = async () =>{
         await axios.get("http://localhost:3001/product").then(async (res)=>{
             if (res.status == 200) {
                 setProds(res.data)
-
-
-            
-
-
-
             }
         }).catch(e=>{
             console.log(e)
         })
     }
-
-
-
-
-    //preparing the img, title, description, price
     const [prodTitle, setProdTitle] :any = React.useState()
     const [prodDescription, setProdDescription]:any = React.useState()
     const [prodPrice, setProdPrice] :any= React.useState()
     const [prodCat, setProdCat]:any = React.useState()
-
-
     const {url} = useUpload(true)
-
     const saveProd = async (img:any) =>{
 
             console.log("tst", String(img))
@@ -104,7 +77,6 @@ const useInv =() =>{
             price: Number(prodPrice),
             image: image,
         }
-
         const token = localStorage.getItem("token")
         if (token) {
             await axios.post("http://localhost:3001/product", reqBody, {
@@ -125,36 +97,18 @@ const useInv =() =>{
                     }
 
     }
-
-
     return {
         title, setTitle, description, setDescription,
         saveCat,
-
-
         getCategory,
         cats, setMeow , 
-
         getProds,
         prods, 
-
-
-        prodTitle, setProdTitle, prodDescription, setProdDescription,
-        
+        prodTitle, setProdTitle, prodDescription, setProdDescription,  
         prodPrice, setProdPrice, 
         prodCat, setProdCat,
         saveProd
 
-    }
-
-
-
-
-
-
-
-
-    
+    } 
 }
-
 export default useInv

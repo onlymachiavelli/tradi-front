@@ -4,7 +4,6 @@ import Card from './prodCard'
 import useInv from '../hooks/useInv'
 import useUpload from '../hooks/uploadIMG'
 import * as Toaster from 'react-hot-toast'
-// Get products
 const Products = () => {
     const {image, setImage, upload, url, setUrl} = useUpload(true)
   const { getProds, prods, cats, getCategory , setMeow,
@@ -15,24 +14,15 @@ const Products = () => {
         saveProd
 } = useInv()
     const [vis, setVis] = React.useState("hidden")
-
-
     const handleFileChange = (event :any) => {
         if (event.target.files) {
           setImage(event.target.files[0]);
         }
-    
-        console.log("tst",image)
-      };
+      }
   React.useEffect(() => {
       getProds()
       getCategory()
-    
-
   }, [])
-
-  console.log(cats)
-
   return (
     <div className="w-full h-auto pt-10">
       <div className="h-auto w-full ">
@@ -41,22 +31,13 @@ const Products = () => {
           return <Card Prod={prod}  key={index} />
         })}
       </div>
-
-
       <button className='fixed bottom-5 right-5 bg-blue-700 text-white font-bold w-10 h-10 rounded-full shadow'
         onClick={()=>{
             setVis("fixed")
         }}
       >+</button>
-
-
-
-
-
       {
-
-        //Our PopUp
-
+        
         <main className={`w-full h-screen ${vis} top-0 bg-[#000000a1] flex items-center  align-center justify-center`}>
             <form className="w-1/2  pt-10 bg-white p-10 mr-80">
       <div className="flex flex-wrap -mx-3 mb-6">
@@ -73,10 +54,6 @@ const Products = () => {
                 onChange={(e:any)=>{
                     setProdTitle(e.target.value)
                 }}
-
-              
-
-
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
@@ -92,8 +69,6 @@ const Products = () => {
                 onChange={(e:any)=>{
                     setProdDescription(e.target.value)
                 }}
-
-
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 pt-5">
@@ -111,10 +86,7 @@ const Products = () => {
                     setProdPrice(e.target.value)
                 }}
             />
-          </div>
-
-
-          
+          </div>       
         <div className="w-full">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Category Of The Product
@@ -148,21 +120,7 @@ const Products = () => {
                 </div>
               </div>
             </div>
-
-
-
-
-
         </div>
-
-
-
-       
-
-
-
-
-
         <div className="flex items-center justify-center bg-grey-lighter pt-5">
           <label className="w-64 flex flex-col items-center px-4 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
             <svg className="w-8 h-8" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -176,42 +134,21 @@ const Products = () => {
             />
           </label>
         </div>
-
-
-
-
-
-
-
-
-        
-
-
-
         <button className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
-            console.log("the url is : ", url)
             upload(()=>{
               saveProd(url)
 
             })
-            
             Toaster.toast.success("Done Adding the product")
             //setUrl('')
-
             setProdTitle('')
             setProdDescription('')
             setProdPrice('')
             setProdCat('')
-            setVis("hidden")
-
-
-            
+            setVis("hidden")         
         }}>
                     Add Category
           </button>
-
-
-
           <button className="mt-5 ml-5 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
                 setVis("hidden")
         }}>
@@ -221,9 +158,6 @@ const Products = () => {
 
         </main>
       }
-
-
-
       <Toaster.Toaster
                 position="top-right"
                 reverseOrder={false}
