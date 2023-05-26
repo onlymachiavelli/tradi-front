@@ -8,6 +8,8 @@ const Order = async (datas : any) =>{
     await axios.post('http://localhost:3001/orders/',datas).then((res)=>{
         console.log(res)
         toast.success('Order Placed Successfully')
+        localStorage.setItem("cart", "[]")
+        
 
     }
     )
@@ -123,6 +125,7 @@ const Pop = ({...props})=>{
                     address : address,
                     list:l
                 })
+                props.setV("hidden")
                 
                 //setVis("hidden")
               }}
