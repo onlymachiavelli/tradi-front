@@ -5,11 +5,6 @@ import * as Toaster from 'react-hot-toast'
 const useInv =() =>{
 
 
-
-
-
-
-
     //to save a category
     const [title, setTitle] = React.useState("")
     const [description, setDescription] = React.useState("")
@@ -46,7 +41,7 @@ const useInv =() =>{
     }
 
 
-    const [cats, setMeow] = React.useState([])
+    const [cats, setMeow] :any= React.useState([])
     const getCategory = async () =>{
         await axios.get("http://localhost:3001/category").then(res=>{
             if (res.status == 200) {
@@ -59,14 +54,49 @@ const useInv =() =>{
     }
 
 
+
+
+
+
+
+    const [prods, setProds] :any = React.useState([])
+    const getProds = async () =>{
+        await axios.get("http://localhost:3001/product").then(async (res)=>{
+            if (res.status == 200) {
+                setProds(res.data)
+
+
+            
+
+
+
+            }
+        }).catch(e=>{
+            console.log(e)
+        })
+    }
+
     return {
         title, setTitle, description, setDescription,
         saveCat,
 
 
         getCategory,
-        cats, setMeow
+        cats, setMeow , 
+
+        getProds,
+        prods, 
+
     }
+
+
+
+
+
+
+
+
+    
 }
 
 export default useInv

@@ -79,7 +79,7 @@ const Catego = ({ ...props }) => {
             upload(()=>saveCat(url))
             setUrl('')
         }}>
-                    Add
+                    Add Category
           </button>
       </form>
 

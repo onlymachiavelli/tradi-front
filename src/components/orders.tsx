@@ -11,7 +11,7 @@ const Orders = ({...props})=>{
     },[])
     if (props.Role !=="ord"&& props.Role !== "adm") {
         return (
-            <div>
+            <div className='w-full h-screen flex items-center justify-center'>
                 You don't have access to this Controller
             </div>
         )
