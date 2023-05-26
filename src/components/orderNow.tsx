@@ -116,8 +116,16 @@ const Pop = ({...props})=>{
 
                 //add item to cart
                 for (let i=0;i<list.length;i++) {
-                    l+=String(list[i].id)
+                  if (l) {
+                    l+=","
+                  }  
+                  l+=String(list[i].id)
+                    
                 }
+                console.log("our list is " , list)
+                if (list.length >0 ) {
+
+               
                 Order({
                     fullname : name, 
                     email : email,
@@ -125,7 +133,17 @@ const Pop = ({...props})=>{
                     address : address,
                     list:l
                 })
+
+
+                toast.success("Done sending the order")
+              }
+
+              else {
+                toast.error("No items in the cart")
+              }
                 props.setV("hidden")
+                props.setVV("hidden")
+
                 
                 //setVis("hidden")
               }}
@@ -137,6 +155,7 @@ const Pop = ({...props})=>{
               type="button"
               onClick={() => {
                 props.setV("hidden")
+                props.setVV("hidden")
 
             }}
             >

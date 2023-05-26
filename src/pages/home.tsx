@@ -397,7 +397,7 @@ const Home = () =>{
                 </div>    
 
 
-                <Pop Vis={v} setV={setV}/>   
+                <Pop Vis={v} setV={setV} setVV={setVis}/>   
         </main>
     )
 }
