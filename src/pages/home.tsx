@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import Card from '../components/prods.cards';
+import Pop from '../components/orderNow';
 import useProds from '../hooks/useProds';
 import axios from 'axios'
   
@@ -39,6 +40,7 @@ if (!localStorage.getItem("cart")) {
 const Home = () =>{
     const {prods, getAll} = useProds()
     const [vis, setVis] = React.useState("hidden")
+    const [v, setV] = React.useState("hidden")
 
     const getCart = ()=>{
         const cart = localStorage.getItem("cart")
@@ -349,49 +351,7 @@ const Home = () =>{
      })
 
 }
-{
 
-
-    /*
-    
- localStorage.getItem("cart")?.split(",").map((prod: any, index: number) => {
-    
-    //get the local storage 
-    const st :any= localStorage.getItem("cart")
-    let cart :any = JSON.parse(st)
-    console.log(cart)
-
-    //mapping 
-    
-
-
-
-    cart.map(p :any =>{})
-
-    return (
-      <li className="flex items-center gap-4" key={index}>
-        <img
-          src={p.image}
-          alt=""
-          className="h-16 w-16 rounded object-cover"
-        />
-
-        <div>
-          <h3 className="text-sm text-gray-900">{p.title}</h3>
-
-          <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-            <div>
-              <dt className="inline">{p.price} DT</dt>
-            </div>
-          </dl>
-        </div>
-      </li>
-    );
-  })
-}    
-    
-    */
-}
 
 </ul>
 
@@ -411,6 +371,13 @@ const Home = () =>{
       <a
         href="#"
         className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+      
+        onClick={()=>{
+        
+            setV("fixed")
+        }
+
+        }
       >
         Order Now
       </a>
@@ -427,7 +394,10 @@ const Home = () =>{
     </div>
   </div>
 </div>
-                </div>       
+                </div>    
+
+
+                <Pop Vis={v} setV={setV}/>   
         </main>
     )
 }
