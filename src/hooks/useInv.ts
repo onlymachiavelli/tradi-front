@@ -1,6 +1,10 @@
 import * as React from 'react'
 import axios from 'axios'
 import * as Toaster from 'react-hot-toast'
+import useUpload from './uploadIMG'
+
+
+
 
 const useInv =() =>{
 
@@ -80,21 +84,25 @@ const useInv =() =>{
 
 
     //preparing the img, title, description, price
-    const [prodTitle, setProdTitle] = React.useState()
-    const [prodDescription, setProdDescription] = React.useState()
-    const [prodPrice, setProdPrice] = React.useState()
-    const [prodCat, setProdCat] = React.useState()
+    const [prodTitle, setProdTitle] :any = React.useState()
+    const [prodDescription, setProdDescription]:any = React.useState()
+    const [prodPrice, setProdPrice] :any= React.useState()
+    const [prodCat, setProdCat]:any = React.useState()
 
+
+    const {url} = useUpload(true)
 
     const saveProd = async (img:any) =>{
 
-        
+            console.log("tst", String(img))
+            let image : any = img ? img : url
+            console.log("The image is : " , image) 
         const reqBody = {
             title: prodTitle,
             description: prodDescription,
 
             price: Number(prodPrice),
-            image: img,
+            image: image,
         }
 
         const token = localStorage.getItem("token")

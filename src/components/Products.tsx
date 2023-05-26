@@ -3,6 +3,7 @@ import Card from './prodCard'
 
 import useInv from '../hooks/useInv'
 import useUpload from '../hooks/uploadIMG'
+import * as Toaster from 'react-hot-toast'
 // Get products
 const Products = () => {
     const {image, setImage, upload, url, setUrl} = useUpload(true)
@@ -34,7 +35,7 @@ const Products = () => {
 
   return (
     <div className="w-full h-auto pt-10">
-      <div className="flex w-full items-center justify-center flex-wrapper">
+      <div className="h-auto w-full ">
         {prods.map((prod: any, index: any) => {
           
           return <Card Prod={prod}  key={index} />
@@ -189,8 +190,21 @@ const Products = () => {
 
         <button className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type='button' onClick={()=>{
             console.log("the url is : ", url)
-            upload(()=>saveProd(url))
-            setUrl('')
+            upload(()=>{
+              saveProd(url)
+
+            })
+            
+            Toaster.toast.success("Done Adding the product")
+            //setUrl('')
+
+            setProdTitle('')
+            setProdDescription('')
+            setProdPrice('')
+            setProdCat('')
+            setVis("hidden")
+
+
             
         }}>
                     Add Category
@@ -207,6 +221,13 @@ const Products = () => {
 
         </main>
       }
+
+
+
+      <Toaster.Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
     </div>
   )
 }
