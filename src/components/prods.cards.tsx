@@ -1,4 +1,5 @@
 const Card = ({...props}) =>{
+    console.log(props.Prod.image)
     return (
 
 
@@ -6,7 +7,7 @@ const Card = ({...props}) =>{
                 <div className="bg-white shadow-lg hover:shadow-xl rounded-lg">
                 <div
                     className="bg-gray-400 h-64 rounded-t-lg p-4 bg-no-repeat bg-center bg-cover"
-                    style={{ backgroundImage: "url(https://loremflickr.com/400/340/bread,book)" }}
+                    style={{ backgroundImage: `url('${props.Prod.image}')` }}
                 >
                     <div className="text-right">
                     <button className="text-pink-500 hover:text-pink-600 p-2 rounded-full" style={{ background: "rgba(0,0,0,0.3)" }}>
@@ -18,12 +19,20 @@ const Card = ({...props}) =>{
                 </div>
                 <div className="flex justify-between items-start px-2 pt-2">
                     <div className="p-2 flex-grow">
-                    <h1 className="font-medium text-xl font-poppins">Product name</h1>
-                    <p className="text-gray-500 font-nunito">Short description here</p>
+                    <h1 className="font-medium text-xl font-poppins">{
+                            props.Prod.title
+                    }</h1>
+                    <p className="text-gray-500 font-nunito">S{
+                            props.Prod.description
+                    }</p>
                     </div>
                     <div className="p-2 text-right">
-                    <div className="text-red-500 font-semibold text-lg font-poppins">$40</div>
-                    <div className="text-xs text-gray-500 line-through font-poppins">$80</div>
+                    <div className="text-red-500 font-semibold text-lg font-poppins">{
+                            Number(props.Prod.price)
+                    }</div>
+                    <div className="text-xs text-gray-500 line-through font-poppins">{
+                            Number(props.Prod.price) *1.20
+                    }</div>
                     </div>
                 </div>
                 <div className="flex justify-center items-center px-2 pb-2">
@@ -36,7 +45,7 @@ const Card = ({...props}) =>{
                     </div>
                     <div className="w-1/2 p-2">
                     <button className="block w-full bg-white hover:bg-gray-100 text-red-500 border-2 border-red-500 px-3 py-2 rounded uppercase font-poppins font-medium">
-                        Add to cart
+                    <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>
                     </div>
                 </div>

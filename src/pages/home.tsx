@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import Card from '../components/prods.cards';
-
+import useProds from '../hooks/useProds';
   
   const divStyle = {
     display: 'flex',
@@ -30,6 +30,10 @@ import Card from '../components/prods.cards';
   ]
   
 const Home = () =>{
+    const {prods, getAll} = useProds()
+    React.useEffect(()=>{
+        getAll()
+    }, [])
     return (
         <main className='w-full h-auto'>
             <header className='w-full h-auto flex bg-[#111] p-5 justify-between'>
@@ -148,18 +152,16 @@ const Home = () =>{
 
 
             <div className="flex justify-center items-center min-h-screen  w-10/12 m-auto flex-wrap">
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
+                    {
+                        prods.map((prod:any, index:number)=>{
+                            console.log( "hey", prod)
+                            return (
+                                <Card Prod={prod} key={index} />
+                            )
+                        })
+                    }
+            
+          
 
             </div>
 
