@@ -25,6 +25,7 @@ const useSignUp = () =>{
             phone: phone,
             fullname: fullname,
             role: admin,
+            picture:localStorage.getItem("prof")
         }
 
         await axios.post("http://localhost:3001/me/", reqBody).then(res=>{

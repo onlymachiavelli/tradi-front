@@ -1,14 +1,26 @@
 import * as React from 'react';
 import useSignUp from '../hooks/useSignup';
 import * as Toaster from 'react-hot-toast'
+import useUpload from '../hooks/profilePic';
 const Register = () => {
   const {username, password, setUser, setPassword, email, setEmail, admin, setAdmin, phone, setPhone,fullname, setFullname, Create} = useSignUp()
+  const {setImage,image, upload} = useUpload()
+  const handleFileChange = (event: any) => {
+    if (event.target.files) {
+      setImage(event.target.files[0])
+    }
+  }
+
   return (
     <div className="w-full h-screen bg-[#e6e6e6] overflow-hidden">
       <form className="w-3/4 shadow-md border p-5 mx-auto mt-20 bg-white rounded" 
       onSubmit={(e)=>{
         e.preventDefault()
-        Create()
+        upload(()=>{
+          Create()
+          Toaster.toast.success('Account created successfully')
+        })
+        
       }}
       >
       <p className='flex justify-center py-4 font-bold text-3xl text-gray-700 pb-10'>Register Admin</p>
@@ -109,6 +121,7 @@ const Register = () => {
                     setAdmin(e.target.value)
                   }}
                 >
+                  <option value="null">Choose A Role</option>
                   <option 
                   value={"adm"}>Admin (Access To Everything)</option>
                   <option value={"inv"}>Inventory Manager</option>
@@ -127,6 +140,27 @@ const Register = () => {
             </div>
           </aside>
         </div>
+
+
+
+
+        <div className="flex items-center justify-center bg-grey-lighter pt-5">
+              <label className="w-64 flex flex-col items-center px-4 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+                <svg className="w-8 h-8" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                </svg>
+                <span className="mt-2 text-base text-white leading-normal">Select Image</span>
+                <input
+                  type="file"
+                  
+                 
+                  className="hidden"
+                  onChange={handleFileChange}
+
+                />
+              </label>
+            </div>
+
         <div className="flex justify-center">
           <button className="shadow bg-blue-700 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-5">
             Sign Up
