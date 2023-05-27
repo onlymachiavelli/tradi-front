@@ -15,7 +15,7 @@ const Inventory =  ({...props}) =>{
     }
     return (
         <div>
-             <nav className="w-full h-auto bg-blue-700 p-4 border-l flex " >
+             <nav className="w-full h-auto bg-red-500 p-4 border-l flex " >
                 <p className="text-white text-xl">Manage Inventory</p>
 
                 <nav className='p-0.5 ml-10 gap-4 flex'>

@@ -18,7 +18,7 @@ const Orders = ({...props})=>{
     }
     return (
         <div className="w-full h-auto">
-            <nav className="w-full h-auto bg-blue-700 p-4 border-l">
+            <nav className="w-full h-auto bg-red-500 p-4 border-l">
                 <p className="text-white text-xl">Manage Orders</p>
 
                 <nav>

@@ -33,7 +33,7 @@ const Products = () => {
         ))}
       </div>
       <button
-        className="fixed bottom-5 right-5 bg-blue-700 text-white font-bold w-10 h-10 rounded-full shadow"
+        className="fixed bottom-5 right-5 bg-red-500 text-white font-bold w-10 h-10 rounded-full shadow"
         onClick={() => {
           setVis("fixed")
         }}
@@ -115,7 +115,7 @@ const Products = () => {
               </div>
             </div>
             <div className="flex items-center justify-center bg-grey-lighter pt-5">
-              <label className="w-64 flex flex-col items-center px-4 py-6 bg-blue-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
+              <label className="w-64 flex flex-col items-center px-4 py-6 bg-red-500 text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white">
                 <svg className="w-8 h-8" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                   <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                 </svg>
@@ -128,7 +128,7 @@ const Products = () => {
               </label>
             </div>
             <button
-              className="mt-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="mt-5 bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
               onClick={() => {
                 console.log("url : ", url)

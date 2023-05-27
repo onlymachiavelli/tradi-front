@@ -13,7 +13,7 @@ const Dashboard = () =>{
     const [tab, setTab] :any = React.useState()
     return (
             <div className='w-ull h-screen bg-dark flex items-center justify-center'>
-            <aside className='w-1/4 h-full bg-blue-700 flex items-center justify-between flex-col'>
+            <aside className='w-1/4 h-full bg-red-500 flex items-center justify-between flex-col'>
                 <div className='w-full flex items-center '>
                     <p className='text-white flex  items-center justify-center w-full pt-10 text-xl'>
                         
@@ -22,21 +22,21 @@ const Dashboard = () =>{
                     </p>
                 </div>  
                 <div className='w-full flex flex-col    '>
-                <Link to={""}className='text-white w-full py-4 bg-darg hover:bg-blue-800 pl-4 duration-500' 
+                <Link to={""}className='text-white w-full py-4 bg-darg hover:bg-red-800 pl-4 duration-500' 
                 onClick={()=>{
                 
                     setTab(<MeCard Me={me} />)
                     }
                 }
                 >Home</Link>
-                <Link to={""}className='text-white w-full py-4 bg-darg pl-4 hover:bg-blue-800 duration-500'
+                <Link to={""}className='text-white w-full py-4 bg-darg pl-4 hover:bg-red-800 duration-500'
                 onClick={()=>{
 
                     setTab(<Inventory Role={me.role} />)
                 }
             }
                 >Inventory</Link>
-                <Link to={""}className='text-white w-full py-4 bg-darg pl-4 hover:bg-blue-800 duration-500'
+                <Link to={""}className='text-white w-full py-4 bg-darg pl-4 hover:bg-red-800 duration-500'
                 
                 onClick={()=>{
                     setTab(<Orders Role={me.role} />)
@@ -48,7 +48,7 @@ const Dashboard = () =>{
                 </div>
                 <div></div>
                 <div className='pb-10'>
-                    <button className='text-blue-700 bg-white rounded w-48 h-11 font-bold' onClick={()=>{
+                    <button className='text-red-500 bg-white rounded w-48 h-11 font-bold' onClick={()=>{
                         localStorage.removeItem("token")
                         window.location.href = "/login"
                     }}>

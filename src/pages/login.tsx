@@ -41,10 +41,10 @@ const Login = () =>{
                 <p className="text-red-500 text-xs italic">Please choose a password.</p>
                 </div>
                 <div className="flex items-center justify-between">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Sign In
                 </button>
-                <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to={"/register"}>
+                <Link className="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800" to={"/register"}>
                     Don't have an account ?
                 </Link>
                 </div>
