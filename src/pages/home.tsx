@@ -6,6 +6,7 @@ import 'react-slideshow-image/dist/styles.css'
 import Card from '../components/prods.cards';
 import Pop from '../components/orderNow';
 import useProds from '../hooks/useProds';
+import useSearch from '../hooks/Search';
 import axios from 'axios'
   
   const divStyle = {
@@ -38,10 +39,11 @@ if (!localStorage.getItem("cart")) {
 }
   
 const Home = () =>{
+    const {search, searchResults, searchTxt, setS} = useSearch()
     const {prods, getAll} = useProds()
     const [vis, setVis] = React.useState("hidden")
     const [v, setV] = React.useState("hidden")
-
+    const [searchBox , setBox] = React.useState("hidden") 
     const getCart = ()=>{
         const cart = localStorage.getItem("cart")
         const cartArray = JSON.parse(cart || "[]")
@@ -81,9 +83,21 @@ const Home = () =>{
                     type="text"
                     className="h-10 w-96 pl-10 pr-20 text-sm z-0 focus:shadow focus:outline-none"
                     placeholder="Search anything..."
+                    value={searchTxt}
+                    onChange={(e)=>{
+                        setS(e.target.value)
+                    }}
                     />
                     <div className="absolute top-0 right-0">
-                    <button className="h-10   text-sm w-20 text-white bg-red-500 hover:bg-red-600 pb-0.5">Search</button>
+                    <button className="h-10   text-sm w-20 text-white bg-red-500 hover:bg-red-600 pb-0.5"
+                    
+                        onClick={()=>{
+                            search()
+                            console.log("search result : " , searchResults)
+                            setBox("fixed")
+                        }}
+                    
+                    >Search</button>
                     </div>
                 </div>
                 </div>
@@ -398,6 +412,84 @@ const Home = () =>{
 
 
                 <Pop Vis={v} setV={setV} setVV={setVis}/>   
+
+
+
+
+                {
+
+                    //search result 
+
+
+                }
+
+
+                <div className={`${searchBox} w-full h-screen top-0 bg-[#000000a9] flex items-center justify-center `}>
+                    <div className='w-11/12 h-auto bg-gray-100 p-5 rounded shadow-xl' >
+                        
+                        
+            <div className="flex gap-5 items-center justify-center">
+            <div className="relative">
+                <div className="bg-gray-200">
+                <div className="relative">
+                    <div className="absolute top-1.5 left-2">
+                    <i className="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+                    </div>
+                    <input
+                    type="text"
+                    className="h-10 w-96 pl-10 pr-20 text-sm z-0 focus:shadow focus:outline-none"
+                    placeholder="Search anything..."
+                    value={searchTxt}
+                    onChange={(e)=>{
+                        setS(e.target.value)
+                    }}
+                    />
+                    <div className="absolute top-0 right-0">
+                    <button className="h-10   text-sm w-20 text-white bg-red-500 hover:bg-red-600 pb-0.5"
+                    
+                        onClick={()=>{
+                            search()
+                            console.log("search result : " , searchResults)
+                        }}
+                    
+                    >Search</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+                        
+                        Result for keyword : {searchTxt}
+                        <div className='w-full h-auto flex items-center justify-center flex-wrap'>
+                            {
+                                searchResults.length == 0 ? <p className='text-center w-full'>No Result for {searchTxt}</p> : null
+                            }
+                            {
+
+                                searchResults.map((prod:any, index:number)=>{
+                                    console.log( "hey", prod)
+                                    return (
+                                        <Card Prod={prod} key={index} />
+                                    )
+                                })
+
+                            }
+                        </div>
+
+
+
+                        <button className="h-10   text-sm w-20 text-white bg-red-500 hover:bg-red-600 pb-0.5 m-auto"
+                    
+                    onClick={()=>{
+                        setBox("hidden")
+                    }}
+                
+                >Close</button>
+                    </div>
+
+
+                    
+                </div>
         </main>
     )
 }
